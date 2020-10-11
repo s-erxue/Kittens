@@ -58,7 +58,7 @@ namespace Kittens
                   Console.Write($"{i + 1}. ");
                   PrintCardWithNewline(actionCards.ElementAt(i));
                 }
-                Card cardToPlay = actionCards.ElementAt(GetIntFromRange("\n> ", actionCards.Count()));
+                Card cardToPlay = actionCards.ElementAt(GetIntFromRange("\n> ", actionCards.Count()) - 1);
                 switch (cardToPlay)
                 {
                   case Card.Attack2x:
