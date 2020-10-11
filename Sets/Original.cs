@@ -68,6 +68,7 @@ namespace Kittens
                   case Card.Favor:
                     break;
                   case Card.Shuffle:
+                    deck.Shuffle();
                     break;
                   case Card.SeeTheFuture3x:
                     break;
