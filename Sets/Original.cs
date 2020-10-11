@@ -16,12 +16,12 @@ namespace Kittens
       currentPlayer.turnsLeft = 1;
       while (currentPlayer.turnsLeft > 0)
       {
-        PlayOrPass(players, currentPlayer);
+        PlayOrPass(currentPlayer);
         return;
       }
     }
 
-    private static void PlayOrPass(List<Player> players, Player currentPlayer)
+    private static void PlayOrPass(Player currentPlayer)
     {
       while (true)
       {
