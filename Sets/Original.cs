@@ -57,67 +57,73 @@ namespace Kittens
       #endregion
       Player currentPlayer = players[0];
       Console.WriteLine($"{currentPlayer.name}'s turn!");
-      #region play or pass
-      while (true)
+      #region game
+      #region pass or play
+      while (currentPlayer.turnsLeft > 0)
       {
-        switch (GetIntFromRange(@"What do you want to do?
+
+        while (true)
+        {
+          switch (GetIntFromRange(@"What do you want to do?
 1. View hand
 2. Play card
 3. Pass
 
 > ", 3))
-        {
-          case 1:
-            Console.WriteLine("Your hand:\n");
-            foreach (Card card in currentPlayer.hand)
-            {
-              PrintCardWithNewline(card);
-            }
-            break;
-          case 2:
-            switch (GetIntFromRange(@"How to play cards?
+          {
+            case 1:
+              Console.WriteLine("Your hand:\n");
+              foreach (Card card in currentPlayer.hand)
+              {
+                PrintCardWithNewline(card);
+              }
+              break;
+            case 2:
+              switch (GetIntFromRange(@"How to play cards?
 
 1. Play single card
 2. Play special combo
 
 > ", 2))
-            {
-              case 1:
-                var actionCards = currentPlayer.hand.Where(
-                  (card) =>
-                    Array.Exists(new Card[] { Card.Attack2x, Card.Skip, Card.Favor, Card.Shuffle, Card.SeeTheFuture3x }, actionCard => actionCard == card)
-                ).Distinct();
-                Console.WriteLine("Which one?\n");
-                for (int i = 0; i < actionCards.Count(); i++)
-                {
-                  Console.Write($"{i+1}. ");
-                  PrintCardWithNewline(actionCards.ElementAt(i));
-                }
-                Card cardToPlay = actionCards.ElementAt(GetIntFromRange("\n> ", actionCards.Count()));
-                switch (cardToPlay)
-                {
-                  case Card.Attack2x:
-                    break;
-                  case Card.Skip:
-                    break;
-                  case Card.Favor:
-                    break;
-                  case Card.Shuffle:
-                    break;
-                  case Card.SeeTheFuture3x:
-                    break;
-                }
-                break;
-              case 2:
-                break;
-            }
-            break;
-          case 3:
-            currentPlayer = NextInRotatingArray(players, currentPlayer);
-            Console.WriteLine($"{currentPlayer.name}'s turn!");
-            break;
-        }
+              {
+                case 1:
+                  var actionCards = currentPlayer.hand.Where(
+                    (card) =>
+                      Array.Exists(new Card[] { Card.Attack2x, Card.Skip, Card.Favor, Card.Shuffle, Card.SeeTheFuture3x }, actionCard => actionCard == card)
+                  ).Distinct();
+                  Console.WriteLine("Which one?\n");
+                  for (int i = 0; i < actionCards.Count(); i++)
+                  {
+                    Console.Write($"{i + 1}. ");
+                    PrintCardWithNewline(actionCards.ElementAt(i));
+                  }
+                  Card cardToPlay = actionCards.ElementAt(GetIntFromRange("\n> ", actionCards.Count()));
+                  switch (cardToPlay)
+                  {
+                    case Card.Attack2x:
+                      break;
+                    case Card.Skip:
+                      break;
+                    case Card.Favor:
+                      break;
+                    case Card.Shuffle:
+                      break;
+                    case Card.SeeTheFuture3x:
+                      break;
+                  }
+                  break;
+                case 2:
+                  break;
+              }
+              break;
+            case 3:
+              currentPlayer = NextInRotatingArray(players, currentPlayer);
+              Console.WriteLine($"{currentPlayer.name}'s turn!");
+              break;
+          }
+        } 
       }
+      #endregion 
       #endregion
     }
   }

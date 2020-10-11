@@ -6,10 +6,12 @@ namespace Kittens
   {
     public string name;
     public List<Card> hand;
+    public ushort turnsLeft;
 
     public Player()
     {
       hand = new List<Card>();
+      turnsLeft = 0;
     }
   }
 }
