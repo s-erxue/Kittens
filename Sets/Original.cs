@@ -10,50 +10,7 @@ namespace Kittens
     public static void Play()
     {
       #region setup
-      int numPlayers = GetIntFromRange("How many players? ", 2, 5);
-      List<Player> players = new List<Player>();
-      for (int i = 0; i < numPlayers; i++)
-      {
-        Console.Write($"Player {i + 1}'s name? (enter in order of play) ");
-        players[i] = new Player
-        {
-          name = Console.ReadLine()
-        };
-      }
-      foreach (Player player in players)
-      {
-        player.hand.Add(Card.Defuse);
-      }
-      List<Card> deck = new List<Card>();
-      List<Card> discardPile = new List<Card>();
-      deck.AddRange(Repeat(Card.Nope, 5));
-      deck.AddRange(Repeat(Card.Attack2x, 4));
-      deck.AddRange(Repeat(Card.Skip, 4));
-      deck.AddRange(Repeat(Card.Favor, 4));
-      deck.AddRange(Repeat(Card.Shuffle, 4));
-      deck.AddRange(Repeat(Card.SeeTheFuture3x, 5));
-      foreach (Card cat in new Card[] {
-        Card.Tacocat,
-        Card.Cattermelon,
-        Card.HairyPotatoCat,
-        Card.BeardCat,
-        Card.RainbowRalphingCat
-      })
-      {
-        deck.AddRange(Repeat(cat, 4));
-      }
-      deck.Shuffle();
-      foreach (Player player in players)
-      {
-        for (int i = 0; i < 7; i++)
-        {
-          player.hand.Add(deck[0]);
-          deck.RemoveAt(0);
-        }
-      }
-      deck.AddRange(Repeat(Card.Defuse, (ushort)(6 - numPlayers)));
-      deck.AddRange(Repeat(Card.ExplodingKitten, (ushort)(numPlayers - 1)));
-      deck.Shuffle();
+      (List<Player> players, int numPlayers, List<Card> deck) = Setup();
       #endregion
       Player currentPlayer = players[0];
       Console.WriteLine($"{currentPlayer.name}'s turn!");
@@ -121,10 +78,58 @@ namespace Kittens
               Console.WriteLine($"{currentPlayer.name}'s turn!");
               break;
           }
-        } 
+        }
       }
       #endregion 
       #endregion
+    }
+
+    private static (List<Player> players, int numPlayers, List<Card> deck) Setup()
+    {
+      int numPlayers = GetIntFromRange("How many players? ", 2, 5);
+      List<Player> players = new List<Player>();
+      for (int i = 0; i < numPlayers; i++)
+      {
+        Console.Write($"Player {i + 1}'s name? (enter in order of play) ");
+        players[i] = new Player
+        {
+          name = Console.ReadLine()
+        };
+      }
+      foreach (Player player in players)
+      {
+        player.hand.Add(Card.Defuse);
+      }
+      List<Card> deck = new List<Card>();
+      deck.AddRange(Repeat(Card.Nope, 5));
+      deck.AddRange(Repeat(Card.Attack2x, 4));
+      deck.AddRange(Repeat(Card.Skip, 4));
+      deck.AddRange(Repeat(Card.Favor, 4));
+      deck.AddRange(Repeat(Card.Shuffle, 4));
+      deck.AddRange(Repeat(Card.SeeTheFuture3x, 5));
+      foreach (Card cat in new Card[] {
+        Card.Tacocat,
+        Card.Cattermelon,
+        Card.HairyPotatoCat,
+        Card.BeardCat,
+        Card.RainbowRalphingCat
+      })
+      {
+        deck.AddRange(Repeat(cat, 4));
+      }
+      deck.Shuffle();
+      foreach (Player player in players)
+      {
+        for (int i = 0; i < 7; i++)
+        {
+          player.hand.Add(deck[0]);
+          deck.RemoveAt(0);
+        }
+      }
+      deck.AddRange(Repeat(Card.Defuse, (ushort)(6 - numPlayers)));
+      deck.AddRange(Repeat(Card.ExplodingKitten, (ushort)(numPlayers - 1)));
+      deck.Shuffle();
+      return (players, numPlayers, deck);
     }
   }
 }
