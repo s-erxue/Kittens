@@ -71,6 +71,13 @@ namespace Kittens
                     deck.Shuffle();
                     break;
                   case Card.SeeTheFuture3x:
+                    Console.WriteLine("Cards from top to bottom:\n");
+                    List<Card> topThree = deck.GetRange(deck.Count - 3, 3);
+                    topThree.Reverse();
+                    foreach (Card card in topThree)
+                    {
+                      PrintCardWithNewline(card);
+                    }
                     break;
                 }
                 break;
