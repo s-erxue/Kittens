@@ -16,12 +16,12 @@ namespace Kittens
       currentPlayer.turnsLeft = 1;
       while (currentPlayer.turnsLeft > 0)
       {
-        PlayOrPass(currentPlayer);
+        PlayOrPass(currentPlayer, deck);
         return;
       }
     }
 
-    private static void PlayOrPass(Player currentPlayer)
+    private static void PlayOrPass(Player currentPlayer, List<Card> deck)
     {
       while (true)
       {
@@ -68,6 +68,7 @@ namespace Kittens
                   case Card.Favor:
                     break;
                   case Card.Shuffle:
+                    deck.Shuffle();
                     break;
                   case Card.SeeTheFuture3x:
                     break;
