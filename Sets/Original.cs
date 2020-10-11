@@ -90,10 +90,10 @@ namespace Kittens
       for (int i = 0; i < numPlayers; i++)
       {
         Console.Write($"Player {i + 1}'s name? (enter in order of play) ");
-        players[i] = new Player
+        players.Add(new Player
         {
           name = Console.ReadLine()
-        };
+        });
       }
       foreach (Player player in players)
       {
@@ -121,8 +121,8 @@ namespace Kittens
       {
         for (int i = 0; i < 7; i++)
         {
-          player.hand.Add(deck[deck.Count]);
-          deck.RemoveAt(deck.Count);
+          player.hand.Add(deck[deck.Count - 1]);
+          deck.RemoveAt(deck.Count - 1);
         }
       }
       deck.AddRange(Repeat(Card.Defuse, (ushort)(6 - numPlayers)));
