@@ -107,6 +107,7 @@ namespace Kittens
       {
         player.hand.Add(Card.Defuse);
       }
+
       List<Card> deck = new List<Card>();
       deck.AddRange(Repeat(Card.Nope, 5));
       deck.AddRange(Repeat(Card.Attack2x, 4));
@@ -114,6 +115,7 @@ namespace Kittens
       deck.AddRange(Repeat(Card.Favor, 4));
       deck.AddRange(Repeat(Card.Shuffle, 4));
       deck.AddRange(Repeat(Card.SeeTheFuture3x, 5));
+
       foreach (Card cat in new Card[] {
         Card.Tacocat,
         Card.Cattermelon,
@@ -124,6 +126,7 @@ namespace Kittens
       {
         deck.AddRange(Repeat(cat, 4));
       }
+
       deck.Shuffle();
       foreach (Player player in players)
       {
@@ -133,9 +136,12 @@ namespace Kittens
           deck.RemoveAt(deck.Count - 1);
         }
       }
+
+      // TODO insert cards into deck instead of shuffle again
       deck.AddRange(Repeat(Card.Defuse, (ushort)(6 - numPlayers)));
       deck.AddRange(Repeat(Card.ExplodingKitten, (ushort)(numPlayers - 1)));
       deck.Shuffle();
+
       return (players, numPlayers, deck);
     }
   }
