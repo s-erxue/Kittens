@@ -121,8 +121,8 @@ namespace Kittens
       {
         for (int i = 0; i < 7; i++)
         {
-          player.hand.Add(deck[0]);
-          deck.RemoveAt(0);
+          player.hand.Add(deck[deck.Count]);
+          deck.RemoveAt(deck.Count);
         }
       }
       deck.AddRange(Repeat(Card.Defuse, (ushort)(6 - numPlayers)));
