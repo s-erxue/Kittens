@@ -78,7 +78,6 @@ namespace Kittens
             }
             break;
           case 3:
-            currentPlayer = NextInRotatingArray(players, currentPlayer);
             return;
         }
       }
