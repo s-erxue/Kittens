@@ -9,11 +9,11 @@ namespace Kittens
   {
     public static void Play()
     {
-      #region setup
       (List<Player> players, int numPlayers, List<Card> deck) = Setup();
-      #endregion
+      List<Card> discardPile = new List<Card>();
       Player currentPlayer = players[0];
       Console.WriteLine($"{currentPlayer.name}'s turn!");
+      currentPlayer.turnsLeft = 1;
       #region game
       #region pass or play
       while (currentPlayer.turnsLeft > 0)
