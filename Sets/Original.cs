@@ -48,17 +48,15 @@ namespace Kittens
 > ", 2))
             {
               case 1:
-                var actionCards = currentPlayer.hand.Where(
-                  (card) =>
-                    Array.Exists(new Card[] { Card.Attack2x, Card.Skip, Card.Favor, Card.Shuffle, Card.SeeTheFuture3x }, actionCard => actionCard == card)
-                ).Distinct();
+                const int ActionCards = (int)(Card.Attack2x | Card.Skip | Card.Favor | Card.Shuffle | Card.SeeTheFuture3x);
+                var actionCards = currentPlayer.hand.Where(c => (ActionCards & (int)c) != 0).Distinct().ToList();
                 Console.WriteLine("Which one?\n");
                 for (int i = 0; i < actionCards.Count(); i++)
                 {
                   Console.Write($"{i + 1}. ");
-                  PrintCardWithNewline(actionCards.ElementAt(i));
+                  PrintCardWithNewline(actionCards[i]);
                 }
-                Card cardToPlay = actionCards.ElementAt(GetIntFromRange("\n> ", actionCards.Count()) - 1);
+                Card cardToPlay = actionCards[GetIntFromRange("\n> ", actionCards.Count()) - 1];
                 switch (cardToPlay)
                 {
                   case Card.Attack2x:
