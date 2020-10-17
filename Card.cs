@@ -2,8 +2,7 @@
 
 namespace Kittens
 {
-  [Flags]
-  public enum Card : Int16
+  public enum Card
   {
     ExplodingKitten     = 1,
     Defuse              = 1 << 1,

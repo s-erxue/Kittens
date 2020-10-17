@@ -48,7 +48,6 @@ namespace Kittens
 > ", 2))
             {
               case 1:
-                const int ActionCards = (int)(Card.Attack2x | Card.Skip | Card.Favor | Card.Shuffle | Card.SeeTheFuture3x);
                 var actionCards = currentPlayer.hand.Where(c => (ActionCards & (int)c) != 0).Distinct().ToList();
                 Console.WriteLine("Which one?\n");
                 for (int i = 0; i < actionCards.Count(); i++)
