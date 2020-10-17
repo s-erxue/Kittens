@@ -16,12 +16,12 @@ namespace Kittens
       currentPlayer.turnsLeft = 1;
       while (currentPlayer.turnsLeft > 0)
       {
-        PlayOrPass(currentPlayer, deck);
+        PlayOrPass(currentPlayer, deck, players);
         return;
       }
     }
 
-    private static void PlayOrPass(Player currentPlayer, List<Card> deck)
+    private static void PlayOrPass(Player currentPlayer, List<Card> deck, List<Player> players)
     {
       while (true)
       {
@@ -58,24 +58,44 @@ namespace Kittens
                 Card cardToPlay = actionCards[GetIntFromRange("\n> ", actionCards.Count()) - 1];
                 switch (cardToPlay)
                 {
-                  case Card.Attack2x:
-                    break;
-                  case Card.Skip:
-                    break;
-                  case Card.Favor:
-                    break;
-                  case Card.Shuffle:
-                    deck.Shuffle();
-                    break;
-                  case Card.SeeTheFuture3x:
-                    Console.WriteLine("Cards from top to bottom:\n");
-                    List<Card> topThree = deck.GetRange(deck.Count - 3, 3);
-                    topThree.Reverse();
-                    foreach (Card card in topThree)
-                    {
-                      PrintCardWithNewline(card);
-                    }
-                    break;
+                    case Card.Attack2x:
+                        break;
+                    case Card.Skip:
+                        break;
+                    case Card.Favor:
+                        List<Player> playersToStealFrom = players
+                            .Where(player => player != currentPlayer && player.hand.Count != 0)
+                            .ToList();
+                        Console.WriteLine("Who to steal from?\n");
+                        for (int i = 0; i < playersToStealFrom.Count; i++)
+                        {
+                            Console.WriteLine($"{i + 1}. {playersToStealFrom[i].name}");
+                        }
+                        Player playerToStealFrom = playersToStealFrom[GetIntFromRange("\n>", 1, playersToStealFrom.Count) - 1];
+                        Console.Write($"{playerToStealFrom.name}, press a key when you are ready.");
+                        Console.ReadKey();
+                        Console.WriteLine("Which card to give?\n");
+                        for (int i = 0; i < playerToStealFrom.hand.Count; i++)
+                        {
+                            Console.Write($"{i + 1}. ");
+                            PrintCardWithNewline(playerToStealFrom.hand[i]);
+                        }
+                        int cardToStealIndex = GetIntFromRange("\n>", 1, playerToStealFrom.hand.Count) - 1;
+                        currentPlayer.hand.Add(playerToStealFrom.hand[cardToStealIndex]);
+                        playerToStealFrom.hand.RemoveAt(cardToStealIndex);
+                        break;
+                    case Card.Shuffle:
+                        deck.Shuffle();
+                        break;
+                    case Card.SeeTheFuture3x:
+                        Console.WriteLine("Cards from top to bottom:\n");
+                        List<Card> topThree = deck.GetRange(deck.Count - 3, 3);
+                        topThree.Reverse();
+                        foreach (Card card in topThree)
+                        {
+                            PrintCardWithNewline(card);
+                        }
+                        break;
                 }
                 break;
               case 2:
