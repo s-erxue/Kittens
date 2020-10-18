@@ -56,7 +56,9 @@ namespace Kittens.Sets
                   PrintCardWithNewline(actionCards[i]);
                 }
                 Card cardToPlay = actionCards[GetIntFromRange("\n> ", actionCards.Count()) - 1];
+                // ReSharper disable SwitchStatementMissingSomeEnumCasesNoDefault
                 switch (cardToPlay)
+                // ReSharper restore SwitchStatementMissingSomeEnumCasesNoDefault
                 {
                     case Card.Attack2x:
                         break;
