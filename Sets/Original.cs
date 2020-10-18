@@ -153,11 +153,16 @@ namespace Kittens.Sets
           deck.RemoveAt(deck.Count - 1);
         }
       }
+      
+      for (int i = 0; i < 6 - numPlayers; i++)
+      {
+        deck.Insert(RandomInt(0, deck.Count - 1), Card.Defuse);
+      }
 
-      // TODO insert cards into deck instead of shuffle again
-      deck.AddRange(Repeat(Card.Defuse, (ushort)(6 - numPlayers)));
-      deck.AddRange(Repeat(Card.ExplodingKitten, (ushort)(numPlayers - 1)));
-      deck.Shuffle();
+      for (int i = 0; i < numPlayers - 1; i++)
+      {
+        deck.Insert(RandomInt(0, deck.Count - 1), Card.ExplodingKitten);
+      }
 
       return (players, numPlayers, deck);
     }
