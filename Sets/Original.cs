@@ -14,14 +14,15 @@ namespace Kittens.Sets
       Player currentPlayer = players[0];
       Console.WriteLine($"{currentPlayer.name}'s turn!");
       currentPlayer.turnsLeft = 1;
+      int nextPlayerTurns;
       while (currentPlayer.turnsLeft > 0)
       {
-        PlayOrPass(currentPlayer, deck, players);
+        nextPlayerTurns = PlayOrPass(currentPlayer, deck, players);
         return;
       }
     }
 
-    private static void PlayOrPass(Player currentPlayer, List<Card> deck, List<Player> players)
+    private static int PlayOrPass(Player currentPlayer, List<Card> deck, List<Player> players)
     {
       while (true)
       {
@@ -63,7 +64,7 @@ namespace Kittens.Sets
                     case Card.Attack2x:
                         break;
                     case Card.Skip:
-                        break;
+                        return 1;
                     case Card.Favor:
                         List<Player> playersToStealFrom = players
                             .Where(player => player != currentPlayer && player.hand.Count != 0)
@@ -105,7 +106,7 @@ namespace Kittens.Sets
             }
             break;
           case 3:
-            return;
+            return 1;
         }
       }
     }
