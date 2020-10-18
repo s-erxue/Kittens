@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using static Kittens.Helpers;
 
-namespace Kittens
+namespace Kittens.Sets
 {
   public static class Original
   {
