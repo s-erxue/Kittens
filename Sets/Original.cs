@@ -48,7 +48,13 @@ namespace Kittens.Sets
 > ", 2))
             {
               case 1:
-                List<Card> actionCards = currentPlayer.hand.Where(c => Array.Exists(new[] { Card.Attack2x, Card.Skip, Card.Favor, Card.Shuffle, Card.SeeTheFuture3x }, card => card == c)).Distinct().ToList();
+                List<Card> actionCards = currentPlayer.hand.Where(
+                  c =>
+                    Array.Exists(
+                      new[] { Card.Attack2x, Card.Skip, Card.Favor, Card.Shuffle, Card.SeeTheFuture3x },
+                      card => card == c
+                    )
+                  ).Distinct().ToList();
                 Console.WriteLine("Which one?\n");
                 for (int i = 0; i < actionCards.Count(); i++)
                 {
