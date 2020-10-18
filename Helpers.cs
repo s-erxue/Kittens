@@ -51,6 +51,12 @@ namespace Kittens
       }
     }
 
+    public static int RandomInt(int min, int max)
+    {
+      Random random = new Random();
+      return random.Next(min, max);
+    }
+
     public static List<T> Repeat<T>(T element, ushort count)
     {
       List<T> ret = new List<T>();
