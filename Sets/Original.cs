@@ -64,7 +64,7 @@ namespace Kittens.Sets
                   Console.Write($"{i + 1}. ");
                   PrintCardWithNewline(actionCards[i]);
                 }
-                Card cardToPlay = actionCards[GetIntFromRange("\n> ", actionCards.Count()) - 1];
+                Card cardToPlay = actionCards[GetIntFromRange("\n> ", actionCards.Count) - 1];
                 // ReSharper disable SwitchStatementMissingSomeEnumCasesNoDefault
                 switch (cardToPlay)
                 // ReSharper restore SwitchStatementMissingSomeEnumCasesNoDefault
