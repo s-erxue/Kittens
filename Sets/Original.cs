@@ -48,7 +48,7 @@ namespace Kittens.Sets
 > ", 2))
             {
               case 1:
-                var actionCards = currentPlayer.hand.Where(c => Array.Exists(new Card[] { Card.Attack2x, Card.Skip, Card.Favor, Card.Shuffle, Card.SeeTheFuture3x }, card => card == c)).Distinct().ToList();
+                var actionCards = currentPlayer.hand.Where(c => Array.Exists(new[] { Card.Attack2x, Card.Skip, Card.Favor, Card.Shuffle, Card.SeeTheFuture3x }, card => card == c)).Distinct().ToList();
                 Console.WriteLine("Which one?\n");
                 for (int i = 0; i < actionCards.Count(); i++)
                 {
@@ -133,7 +133,7 @@ namespace Kittens.Sets
       deck.AddRange(Repeat(Card.Shuffle, 4));
       deck.AddRange(Repeat(Card.SeeTheFuture3x, 5));
 
-      foreach (Card cat in new Card[] {
+      foreach (Card cat in new[] {
         Card.Tacocat,
         Card.Cattermelon,
         Card.HairyPotatoCat,
