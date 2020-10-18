@@ -55,7 +55,7 @@ namespace Kittens.Sets
                       new[] { Card.Attack2x, Card.Skip, Card.Favor, Card.Shuffle, Card.SeeTheFuture3x },
                       card => card == c
                     )
-                  ).Distinct().ToList();
+                ).Distinct().ToList();
                 Console.WriteLine("Which one?\n");
                 for (int i = 0; i < actionCards.Count(); i++)
                 {
