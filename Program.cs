@@ -1,5 +1,8 @@
 ﻿using Kittens.Sets;
 using System;
+// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable ArrangeTypeModifiers
+// ReSharper disable ArrangeTypeMemberModifiers
 
 namespace Kittens
 {
