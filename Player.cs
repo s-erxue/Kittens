@@ -4,14 +4,14 @@ namespace Kittens
 {
   public class Player
   {
-    public string name;
-    public List<Card> hand;
-    public ushort turnsLeft;
+    public string Name;
+    public readonly List<Card> Hand;
+    public ushort TurnsLeft;
 
     public Player()
     {
-      hand = new List<Card>();
-      turnsLeft = 0;
+      Hand = new List<Card>();
+      TurnsLeft = 0;
     }
   }
 }
