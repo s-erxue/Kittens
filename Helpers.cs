@@ -17,11 +17,7 @@ namespace Kittens
           {
             return result;
           }
-          else
-          {
-            Console.WriteLine("Your input was not understood.");
-            continue;
-          }
+          Console.WriteLine("Your input was not understood.");
         }
         else
         {
