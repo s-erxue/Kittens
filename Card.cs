@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Kittens
+﻿namespace Kittens
 {
   public enum Card
   {
