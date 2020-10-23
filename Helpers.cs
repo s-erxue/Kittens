@@ -80,7 +80,7 @@ namespace Kittens
         case Card.Nope:
           Console.Write("Nope");
           break;
-        case Card.Attack2x:
+        case Card.Attack2X:
           Console.Write("Attack 2x");
           break;
         case Card.Skip:
@@ -92,7 +92,7 @@ namespace Kittens
         case Card.Shuffle:
           Console.Write("Shuffle");
           break;
-        case Card.SeeTheFuture3x:
+        case Card.SeeTheFuture3X:
           Console.Write("See the Future 3x");
           break;
         case Card.Tacocat:
