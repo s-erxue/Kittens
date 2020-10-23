@@ -17,11 +17,11 @@ namespace Kittens.Sets
       int nextPlayerTurns;
       while (currentPlayer.TurnsLeft > 0)
       {
-        nextPlayerTurns = PlayOrPass(currentPlayer, deck, players, currentPlayer.TurnsLeft);
+        nextPlayerTurns = PlayOrPass(currentPlayer, deck, players, currentPlayer.TurnsLeft, discardPile);
       }
     }
 
-    private static int PlayOrPass(Player currentPlayer, List<Card> deck, List<Player> players, ushort turnsLeft)
+    private static int PlayOrPass(Player currentPlayer, List<Card> deck, List<Player> players, ushort turnsLeft, List<Card> discardPile)
     {
       ushort turnsLeftLocal = turnsLeft;
       while (turnsLeftLocal > 0)
@@ -117,6 +117,9 @@ namespace Kittens.Sets
 
                       break;
                   }
+
+                  currentPlayer.Hand.Remove(cardToPlay);
+                  discardPile.Add(cardToPlay);
 
                   break;
                 case 2:
