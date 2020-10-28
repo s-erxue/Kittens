@@ -196,6 +196,8 @@ namespace Kittens.Sets
         deck.Insert(RandomInt(0, deck.Count - 1), Card.ExplodingKitten);
       }
 
+      deck.Shuffle();
+
       return (players, numPlayers, deck);
     }
   }
