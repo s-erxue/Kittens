@@ -21,6 +21,12 @@ namespace Kittens.Sets
       (currentPlayer.Attacked, currentPlayer.TurnsLeft) = nextPlayerTurns;
       while (true)
       {
+        if (players.Count == 1)
+        {
+          Console.WriteLine($"{players[0].Name} wins!");
+          return;
+        }
+        
         if (!currentPlayer.Exploded)
         {
           nextPlayerTurns = PlayOrPass(currentPlayer, deck, players, currentPlayer.Attacked, currentPlayer.TurnsLeft,
