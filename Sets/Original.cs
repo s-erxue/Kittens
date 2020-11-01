@@ -8,6 +8,8 @@ namespace Kittens.Sets
 {
   public static class Original
   {
+    private static readonly (bool attacked, ushort turnsLeft) Normal = (false, 1);
+    
     public static void Play()
     {
       (List<Player> players, int numPlayers, List<Card> deck) = Setup();
@@ -15,7 +17,7 @@ namespace Kittens.Sets
       Player currentPlayer = players[0];
       Console.WriteLine($"{currentPlayer.Name}'s turn!");
       currentPlayer.TurnsLeft = 1;
-      (bool attacked, ushort turnsLeft) nextPlayerTurns = (false, 1);
+      (bool attacked, ushort turnsLeft) nextPlayerTurns = Normal;
       (currentPlayer.Attacked, currentPlayer.TurnsLeft) = nextPlayerTurns;
       while (true)
       {
@@ -212,7 +214,7 @@ namespace Kittens.Sets
         }
       }
 
-      return (false, 1);
+      return Normal;
     }
 
     private static (bool attacked, ushort turnsLeft) Explode(Player currentPlayer, List<Player> players)
@@ -226,7 +228,7 @@ namespace Kittens.Sets
       Console.WriteLine();
 
       players.Remove(currentPlayer);
-      return (false, 1);
+      return Normal;
     }
 
     private static (List<Player> players, int numPlayers, List<Card> deck) Setup()
