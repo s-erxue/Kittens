@@ -18,11 +18,11 @@ namespace Kittens.Sets
       (currentPlayer.Attacked, currentPlayer.TurnsLeft) = nextPlayerTurns;
       while (true)
       {
-        nextPlayerTurns = PlayOrPass(currentPlayer, deck, players, currentPlayer.Attacked, currentPlayer.TurnsLeft, discardPile);
+        nextPlayerTurns = PlayOrPass(currentPlayer, deck, players, currentPlayer.Attacked, currentPlayer.TurnsLeft, deck, discardPile);
       }
     }
 
-    private static (bool attacked, ushort turnsLeft) PlayOrPass(Player currentPlayer, List<Card> deck, List<Player> players, bool attacked, ushort turnsLeft, List<Card> discardPile)
+    private static (bool attacked, ushort turnsLeft) PlayOrPass(Player currentPlayer, List<Card> deck, List<Player> players, bool attacked, ushort turnsLeft, List<Card> drawPile, List<Card> discardPile)
     {
       ushort turnsLeftLocal = turnsLeft;
       while (turnsLeftLocal > 0)
@@ -136,7 +136,18 @@ namespace Kittens.Sets
             break;
           case 3:
             turnsLeftLocal--;
-            // TODO: Draw card
+            Console.WriteLine("You drew a(n)...");
+            switch (deck.Last())
+            {
+              case Card.ExplodingKitten:
+                Console.WriteLine("Exploding Kitten!");
+                // TODO: Defuse the Exploding Kitten
+                break;
+              case Card card:
+                deck.RemoveAt(deck.Count - 1);
+                currentPlayer.Hand.Add(card);
+                break;
+            }
             break;
         }
       }
