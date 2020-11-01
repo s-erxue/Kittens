@@ -96,6 +96,7 @@ namespace Kittens.Sets
 
                     Player playerToStealFrom =
                       playersToStealFrom[GetIntFromRange("\n>", 1, playersToStealFrom.Count) - 1];
+                    Console.Clear();
                     Console.Write($"{playerToStealFrom.Name}, press a key when you are ready.");
                     Console.ReadKey();
                     Console.WriteLine("Which card to give?\n");
@@ -108,6 +109,7 @@ namespace Kittens.Sets
                     int cardToStealIndex = GetIntFromRange("\n>", 1, playerToStealFrom.Hand.Count) - 1;
                     currentPlayer.Hand.Add(playerToStealFrom.Hand[cardToStealIndex]);
                     playerToStealFrom.Hand.RemoveAt(cardToStealIndex);
+                    Console.Clear();
                     break;
                   case Card.Shuffle:
                     deck.Shuffle();
