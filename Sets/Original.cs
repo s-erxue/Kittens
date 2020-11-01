@@ -21,7 +21,14 @@ namespace Kittens.Sets
       (currentPlayer.Attacked, currentPlayer.TurnsLeft) = nextPlayerTurns;
       while (true)
       {
-        nextPlayerTurns = PlayOrPass(currentPlayer, deck, players, currentPlayer.Attacked, currentPlayer.TurnsLeft, deck, discardPile);
+        if (!currentPlayer.Exploded)
+        {
+          nextPlayerTurns = PlayOrPass(currentPlayer, deck, players, currentPlayer.Attacked, currentPlayer.TurnsLeft,
+            deck, discardPile);
+        }
+
+        currentPlayer = NextInRotatingArray(players, currentPlayer);
+        (currentPlayer.Attacked, currentPlayer.TurnsLeft) = nextPlayerTurns;
       }
     }
 
@@ -227,7 +234,7 @@ namespace Kittens.Sets
 
       Console.WriteLine();
 
-      players.Remove(currentPlayer);
+      currentPlayer.Exploded = false;
       return Normal;
     }
 

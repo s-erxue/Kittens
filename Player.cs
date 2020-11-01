@@ -8,6 +8,7 @@ namespace Kittens
     public readonly List<Card> Hand;
     public bool Attacked;
     public ushort TurnsLeft;
+    public bool Exploded;
 
     public Player()
     {
