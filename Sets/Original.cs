@@ -194,16 +194,7 @@ namespace Kittens.Sets
                       }
                       break;
                     case 2:
-                      foreach (string word in new[] {"You ", "have ", "exploded!"})
-                      {
-                        Thread.Sleep(1000);
-                        Console.Write(word);
-                      }
-
-                      Console.WriteLine();
-
-                      players.Remove(currentPlayer);
-                      return (false, 1);
+                      return Explode(currentPlayer, players);
                   }
                 }
                 else
