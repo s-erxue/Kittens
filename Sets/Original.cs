@@ -110,6 +110,7 @@ namespace Kittens.Sets
                     currentPlayer.Hand.Add(playerToStealFrom.Hand[cardToStealIndex]);
                     playerToStealFrom.Hand.RemoveAt(cardToStealIndex);
                     Console.Clear();
+                    // TODO: Streaking Kittens: Defuse the Exploding Kitten
                     break;
                   case Card.Shuffle:
                     deck.Shuffle();
@@ -124,6 +125,27 @@ namespace Kittens.Sets
                     }
 
                     break;
+                  
+                  // TODO: Reverse
+                  // TODO: Draw from the Bottom
+                  // TODO: Alter the Future
+                  // TODO: Targeted Attacks
+                  // TODO: Super Skip
+                  // TODO: See the Future 5x
+                  // TODO: Alter the Future 5x
+                  // TODO: Swap Top and Bottom
+                  // TODO: Garbage Collection
+                  // ReSharper disable once CommentTypo
+                  // TODO: Catomic Bomb
+                  // TODO: Mark
+                  // TODO: Curse of the Cat Butt
+                  // TODO: Barking Kitten
+                  // TODO: Bury
+                  // TODO: Personal Attack
+                  // TODO: Potluck
+                  // TODO: Tower of Power
+                  // TODO: I'll Take That
+                  // TODO: Share the Future
                 }
 
                 currentPlayer.Hand.Remove(cardToPlay);
