@@ -208,16 +208,7 @@ namespace Kittens.Sets
                 }
                 else
                 {
-                  foreach (string word in new[] {"You ", "have ", "exploded!"})
-                  {
-                    Thread.Sleep(1000);
-                    Console.Write(word);
-                  }
-
-                  Console.WriteLine();
-
-                  players.Remove(currentPlayer);
-                  return (false, 1);
+                  return Explode(currentPlayer, players);
                 }
                 break;
               case Card card:
@@ -230,6 +221,20 @@ namespace Kittens.Sets
         }
       }
 
+      return (false, 1);
+    }
+
+    private static (bool attacked, ushort turnsLeft) Explode(Player currentPlayer, List<Player> players)
+    {
+      foreach (string word in new[] {"You ", "have ", "exploded!"})
+      {
+        Thread.Sleep(1000);
+        Console.Write(word);
+      }
+
+      Console.WriteLine();
+
+      players.Remove(currentPlayer);
       return (false, 1);
     }
 
