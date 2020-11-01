@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using static Kittens.Helpers;
 
 namespace Kittens.Sets
@@ -165,11 +166,50 @@ namespace Kittens.Sets
             {
               case Card.ExplodingKitten:
                 Console.WriteLine("Exploding Kitten!");
-                // TODO: Defuse the Exploding Kitten
+                if (currentPlayer.Hand.Contains(Card.Defuse))
+                {
+                  Console.WriteLine("Defuse the Exploding Kitten!");
+                  switch (GetIntFromRange(@"Defuse?
+
+1. Yes
+2. No
+> ", 2))
+                  {
+                    case 1:
+                      currentPlayer.Hand.Remove(Card.Defuse);
+                      deck.RemoveAt(deck.Count - 1);
+                      switch (GetIntFromRange(@"Random or specified?
+
+1. Random
+2. Specified
+
+> ", 2))
+                      {
+                        case 1:
+                          deck.Insert(RandomInt(0, deck.Count - 1), Card.ExplodingKitten);
+                          break;
+                        case 2:
+                          deck.Insert(GetIntFromRange($"Where? (1-{deck.Count}) ", deck.Count) - 1, Card.ExplodingKitten);
+                          break;
+                      }
+                      break;
+                  }
+                }
+                else
+                {
+                  foreach (string word in new[] {"You ", "have ", "exploded!"})
+                  {
+                    Thread.Sleep(1000);
+                    Console.Write(word);
+                  }
+
+                  Console.WriteLine();
+                }
                 break;
               case Card card:
                 deck.RemoveAt(deck.Count - 1);
                 currentPlayer.Hand.Add(card);
+                PrintCardWithNewline(card);
                 break;
             }
             break;
